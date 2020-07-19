@@ -20,7 +20,7 @@ public class DishDetailActivity extends AppCompatActivity {
     private int quantity = 1;
     private int price = 0;
     private int total_price = 0;
-    private String nameCategory;
+    private String toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,11 @@ public class DishDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dish_detail);
 
 
-        nameCategory = "Détail de la commande";
+        toolbarTitle = "Détail du plat";
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(nameCategory);
+        getSupportActionBar().setTitle(toolbarTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ImageView imageviewWidget = (ImageView) findViewById(R.id.imageview_widget);
@@ -54,10 +54,10 @@ public class DishDetailActivity extends AppCompatActivity {
         nameWidget.setText(dishItem.getDishName());
         price = Integer.parseInt(dishItem.getDishPrice());
 
-        descriptionTxt.setText(R.string.dish_description);
+        descriptionTxt.setText(dishItem.getDishDescription());
         quantityTxt.setText("" + quantity);
         total_price = price;
-        priceTxt.setText("" + price + "€");
+        priceTxt.setText("" + price + "euros");
 
         quantity = Integer.parseInt(quantityTxt.getText().toString());
 
@@ -68,7 +68,7 @@ public class DishDetailActivity extends AppCompatActivity {
 
                     total_price = total_price - price;
                     quantity--;
-                    priceTxt.setText("" + total_price + "€");
+                    priceTxt.setText("" + total_price + "euros");
                     quantityTxt.setText("" + quantity);
 
                 }
@@ -81,7 +81,7 @@ public class DishDetailActivity extends AppCompatActivity {
 
                 total_price = total_price + price;
                 quantity++;
-                priceTxt.setText("" + total_price + "€");
+                priceTxt.setText("" + total_price + "euros");
                 quantityTxt.setText("" + quantity);
             }
         });
@@ -102,7 +102,7 @@ public class DishDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
-        menu.add("Détail de la commande");
+        menu.add("Détail du plat");
         return true;
     }
 
