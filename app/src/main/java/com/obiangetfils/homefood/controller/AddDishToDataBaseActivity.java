@@ -145,10 +145,10 @@ public class AddDishToDataBaseActivity extends AppCompatActivity implements Adap
     private void AddDataToArrayList() {
         categoryDishList.add("Entrée");
         categoryDishList.add("Desserts");
-        categoryDishList.add("Résistances");
+        categoryDishList.add("Résistance");
         categoryDishList.add("Sandwich");
-        categoryDishList.add("Glaces");
-        categoryDishList.add("Jus et Fruits");
+        categoryDishList.add("Glace");
+        categoryDishList.add("Jus et Fruit");
 
     }
 

@@ -39,12 +39,12 @@ public class HomeFragment extends Fragment {
 
         // Load List
         menuObjectList = new ArrayList<>();
-        menuObjectList.add(new MenuObject("Entrées", R.drawable.ic_entree));
-        menuObjectList.add(new MenuObject("Desserts", R.drawable.ic_dessert_icon));
+        menuObjectList.add(new MenuObject("Entrée", R.drawable.ic_entree));
+        menuObjectList.add(new MenuObject("Dessert", R.drawable.ic_dessert_icon));
         menuObjectList.add(new MenuObject("Resistance", R.drawable.ic_resistance));
         menuObjectList.add(new MenuObject("Sandwich", R.drawable.ic_sandwich));
-        menuObjectList.add(new MenuObject("Glaces", R.drawable.ic_glass_icon));
-        menuObjectList.add(new MenuObject("Jus et Fruits", R.drawable.ic_fruit_and_drink));
+        menuObjectList.add(new MenuObject("Glace", R.drawable.ic_glass_icon));
+        menuObjectList.add(new MenuObject("Jus et Fruit", R.drawable.ic_fruit_and_drink));
 
         initRecyclerView(menuObjectList, root);
         return root;
