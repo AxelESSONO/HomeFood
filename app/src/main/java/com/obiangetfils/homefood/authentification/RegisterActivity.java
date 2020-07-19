@@ -27,6 +27,7 @@ import com.obiangetfils.homefood.controller.HomeActivity;
 
 import java.util.HashMap;
 
+import dmax.dialog.SpotsDialog;
 import es.dmoral.toasty.Toasty;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -79,22 +80,30 @@ public class RegisterActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SpotsDialog waitinDialog = (SpotsDialog) new SpotsDialog.Builder()
+                        .setContext(RegisterActivity.this)
+                        .setMessage("Connexion ou Inscription en cours")
+                        .setCancelable(false)
+                        .build();
+                waitinDialog.show();
+
                 String emailData = emailEdt.getText().toString();
                 String passwordData = passwordEdt.getText().toString();
                 String phoneData = phoneEdt.getText().toString();
                 String usernameData = usernameEdt.getText().toString();
 
                 if (linearLayoutRegisterForm.getVisibility() == View.VISIBLE) {
-                    getAllData(usernameData, phoneData, emailData, passwordData);
+                    getAllData(usernameData, phoneData, emailData, passwordData, waitinDialog);
 
                 } else {
-                    getEmailAndPassword(emailData, passwordData);
+                    getEmailAndPassword(emailData, passwordData, waitinDialog);
                 }
             }
         });
     }
 
-    private void getAllData(final String usernameData, final String phoneData, final String emailData, final String passwordData) {
+    private void getAllData(final String usernameData, final String phoneData, final String emailData, final String passwordData, final SpotsDialog waitinDialog) {
 
         mAuth.createUserWithEmailAndPassword(emailData, passwordData)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -102,10 +111,11 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            saveData(usernameData, phoneData, emailData, passwordData);
+                            saveData(usernameData, phoneData, emailData, passwordData, waitinDialog);
 
                         } else {
                             // If sign in fails, display a message to the user.
+                            waitinDialog.dismiss();
                             Toasty.error(getApplicationContext(), R.string.authentification_failed,
                                     Toast.LENGTH_SHORT, true).show();
                         }
@@ -114,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void saveData(final String usernameData, final String phoneData, final String emailData, final String passwordData) {
+    private void saveData(final String usernameData, final String phoneData, final String emailData, final String passwordData, final SpotsDialog waitinDialog) {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -132,6 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if (task.isSuccessful()) {
+                                waitinDialog.dismiss();
                                 Toasty.success(RegisterActivity.this, R.string.account_creates_suuessfully,
                                         Toast.LENGTH_SHORT, true).show();
                                 startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
@@ -139,6 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             } else {
                                 // If sign in fails, display a message to the user.
+                                waitinDialog.dismiss();
                                 Toasty.error(getApplicationContext(), R.string.authentification_failed, Toast.LENGTH_SHORT, true).show();
                             }
                         }
@@ -148,38 +160,42 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                waitinDialog.dismiss();
             }
         });
     }
 
-    private void getEmailAndPassword(String emailData, String passwordData) {
+    private void getEmailAndPassword(String emailData, String passwordData, SpotsDialog waitinDialog) {
 
         if (!(TextUtils.isEmpty(emailData)) && !(TextUtils.isEmpty(passwordData))) {
-            login(emailData, passwordData);
+            login(emailData, passwordData, waitinDialog);
         } else {
+            waitinDialog.dismiss();
             Toasty.error(getApplicationContext(), R.string.all_field_mandatory,
                     Toast.LENGTH_SHORT, true).show();
         }
 
     }
 
-    private void login(String emailData, String passwordData) {
+    private void login(String emailData, String passwordData, final SpotsDialog waitinDialog) {
         mAuth.signInWithEmailAndPassword(emailData, passwordData)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
+
                             Intent homeIntent = new Intent(RegisterActivity.this, HomeActivity.class);
                             homeIntent.putExtra("LOGIN_TYPE", "EmailPassword");
                             startActivity(homeIntent);
 
+                            waitinDialog.dismiss();
                             Toasty.success(RegisterActivity.this, R.string.you_are_logined, Toast.LENGTH_SHORT, true).show();
                             initEditText(usernameEdt, phoneEdt, emailEdt, passwordEdt);
 
                         } else {
                             // If sign in fails, display a message to the user.
+                            waitinDialog.dismiss();
                             Toasty.error(getApplicationContext(), R.string.authentification_failed, Toast.LENGTH_SHORT, true).show();
                         }
                     }
@@ -222,6 +238,4 @@ public class RegisterActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
-
-
 }

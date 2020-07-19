@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import dmax.dialog.SpotsDialog;
 import es.dmoral.toasty.Toasty;
 
 public class AddDishToDataBaseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -125,13 +126,20 @@ public class AddDishToDataBaseActivity extends AppCompatActivity implements Adap
             Toasty.error(mContext, "Tous les champs sont obligatoirs",
                     Toast.LENGTH_SHORT, true).show();
         } else {
-            saveData(dishName, dishDescription, dishPrice, dishCategory, dishUri);
+
+            SpotsDialog waitinDialog = (SpotsDialog) new SpotsDialog.Builder()
+                    .setContext(mContext)
+                    .setMessage("Téléchargement en cours d'exécution")
+                    .setCancelable(false)
+                    .build();
+            waitinDialog.show();
+            saveData(dishName, dishDescription, dishPrice, dishCategory, dishUri, waitinDialog);
         }
 
     }
 
-    private void saveData(String dishName, String dishDescription, String dishPrice, String dishCategory, String dishUri) {
-        uploadImage(dishName, dishDescription, dishPrice, dishCategory, dishUri);
+    private void saveData(String dishName, String dishDescription, String dishPrice, String dishCategory, String dishUri, SpotsDialog waitinDialog) {
+        uploadImage(dishName, dishDescription, dishPrice, dishCategory, dishUri, waitinDialog);
     }
 
     private void AddDataToArrayList() {
@@ -190,7 +198,12 @@ public class AddDishToDataBaseActivity extends AppCompatActivity implements Adap
         }
     }
 
-    private void uploadImage(final String dishName, final String dishDescription, final String dishPrice, final String dishCategory, final String dishUri) {
+    private void uploadImage(final String dishName,
+                             final String dishDescription,
+                             final String dishPrice,
+                             final String dishCategory,
+                             final String dishUri,
+                             final SpotsDialog waitinDialog) {
         if (uri != null) {
             final String dishKey = UUID.randomUUID().toString();
             // Defining the child of storageReference
@@ -225,6 +238,7 @@ public class AddDishToDataBaseActivity extends AppCompatActivity implements Adap
                                                 .updateChildren(dishHashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+                                                waitinDialog.dismiss();
                                                 Toasty.success(mContext, "Plat ajouté avec succès!!", Toast.LENGTH_SHORT, true).show();
                                             }
                                         });
@@ -234,6 +248,7 @@ public class AddDishToDataBaseActivity extends AppCompatActivity implements Adap
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                     // Error, Image not uploaded
+                                    waitinDialog.dismiss();
                                     Toasty.error(mContext, "Erreur: " + error.getMessage(), Toast.LENGTH_SHORT, true).show();
                                 }
                             });
@@ -244,14 +259,8 @@ public class AddDishToDataBaseActivity extends AppCompatActivity implements Adap
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     // Error, Image not uploaded
+                    waitinDialog.dismiss();
                     Toasty.error(mContext, "Erreur: " + e.getMessage(), Toast.LENGTH_SHORT, true).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                // Progress Listener for loading
-                // percentage on the dialog box
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
                 }
             });
         }

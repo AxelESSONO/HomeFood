@@ -45,6 +45,9 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'codelight.studios:android-smart-login:1.2'
 
+    /* spot dialog*/
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
     implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
 
 
