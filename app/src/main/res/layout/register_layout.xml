@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/username_id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:hint="@string/user_name"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@android:color/black"
+        android:drawableStart="@drawable/ic_person_24"
+        android:drawableTint="@color/colorPrimaryDark"
+        android:drawablePadding="10dp"
+        android:inputType="textEmailAddress"
+        android:background="@color/colorWhite"/>
+
+    <EditText
+        android:id="@+id/phone_number_id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:hint="@string/user_phone"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/black"
+        android:drawableStart="@drawable/ic_phone_24"
+        android:drawableTint="@color/colorPrimaryDark"
+        android:drawablePadding="10dp"
+        android:inputType="phone"
+        android:background="@color/colorWhite"/>
+
+</LinearLayout>
