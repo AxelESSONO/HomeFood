@@ -3,10 +3,13 @@ package com.obiangetfils.homefood.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +24,9 @@ public class DishDetailActivity extends AppCompatActivity {
     private int price = 0;
     private int total_price = 0;
     private String toolbarTitle;
+    private DishItem dishItem;
+    private Menu cartMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,7 @@ public class DishDetailActivity extends AppCompatActivity {
         toolbarTitle = "Détail du plat";
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        //toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarTransparentColor));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(toolbarTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,9 +53,7 @@ public class DishDetailActivity extends AppCompatActivity {
 
         Intent dishListParcelableIntent = getIntent();
 
-        DishItem dishItem = dishListParcelableIntent.getParcelableExtra("DISH_ITEM_LIST");
-        String name = dishItem.getDishName();
-
+        dishItem = dishListParcelableIntent.getParcelableExtra("DISH_ITEM_LIST");
 
         Glide.with(getApplicationContext()).load(dishItem.getDishUri()).into(imageviewWidget);
         nameWidget.setText(dishItem.getDishName());
@@ -57,7 +62,7 @@ public class DishDetailActivity extends AppCompatActivity {
         descriptionTxt.setText(dishItem.getDishDescription());
         quantityTxt.setText("" + quantity);
         total_price = price;
-        priceTxt.setText("" + price + "euros");
+        priceTxt.setText("" + price + " euros");
 
         quantity = Integer.parseInt(quantityTxt.getText().toString());
 
@@ -68,7 +73,7 @@ public class DishDetailActivity extends AppCompatActivity {
 
                     total_price = total_price - price;
                     quantity--;
-                    priceTxt.setText("" + total_price + "euros");
+                    priceTxt.setText("" + total_price + " euros");
                     quantityTxt.setText("" + quantity);
 
                 }
@@ -81,7 +86,7 @@ public class DishDetailActivity extends AppCompatActivity {
 
                 total_price = total_price + price;
                 quantity++;
-                priceTxt.setText("" + total_price + "euros");
+                priceTxt.setText("" + total_price + " euros");
                 quantityTxt.setText("" + quantity);
             }
         });
@@ -89,21 +94,39 @@ public class DishDetailActivity extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cartActivity = new Intent(getApplicationContext(), CartActivity.class);
-                cartActivity.putExtra("QUANTITY", quantity);
 
-                startActivity(cartActivity);
+                gotoCartActivity(dishItem);
             }
         });
 
+    }
+
+    private void gotoCartActivity(DishItem dishItem) {
+        Intent cartActivity = new Intent(getApplicationContext(), CartActivity.class);
+        cartActivity.putExtra("QUANTITY", quantity);
+        cartActivity.putExtra("DISH_CART_DETAIL", dishItem);
+        startActivity(cartActivity);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+        this.cartMenu = menu;
         menu.add("Détail du plat");
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_cart: {
+                gotoCartActivity(dishItem);
+                return true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

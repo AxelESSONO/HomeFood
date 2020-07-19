@@ -26,7 +26,6 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
     private List<DishItem> dishItemList;
     private Context mContext;
 
-
     public StaggeredRecyclerViewAdapter(Context context, List<DishItem> dishItemList) {
 
         this.mContext = context;
