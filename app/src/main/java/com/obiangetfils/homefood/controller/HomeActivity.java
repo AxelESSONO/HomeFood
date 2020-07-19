@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ImageView imageUser;
+    private FloatingActionButton addProductToDataBase;
     private TextView nameUser;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -41,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         imageUser = (ImageView) findViewById(R.id.user_image);
         nameUser = (TextView) findViewById(R.id.username_drawer);
+        addProductToDataBase = (FloatingActionButton) findViewById(R.id.add_product_floating_button);
+
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         // Passing each menu ID as a set of Ids because each
@@ -59,6 +64,13 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String loginType = intent.getStringExtra("LOGIN_TYPE");
+
+        addProductToDataBase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, AddDishToDataBaseActivity.class));
+            }
+        });
 
     }
 
