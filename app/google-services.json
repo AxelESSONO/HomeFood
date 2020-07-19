@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "217502770093",
+    "firebase_url": "https://homefood-fa114.firebaseio.com",
+    "project_id": "homefood-fa114",
+    "storage_bucket": "homefood-fa114.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217502770093:android:9c54d21f7e8ef3a2113724",
+        "android_client_info": {
+          "package_name": "com.obiangetfils.homefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217502770093-99nreqqp5gp7grabopcisd5is6mtdi7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_SWHKJY5OJHrGKL7-UR6ggTrrRDNfvdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217502770093-99nreqqp5gp7grabopcisd5is6mtdi7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
