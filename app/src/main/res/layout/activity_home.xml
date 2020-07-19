@@ -23,9 +23,7 @@
         android:theme="@style/NavigationTheme"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
-
         app:itemIconTint="@drawable/drawer_item_color"
         app:itemTextColor="@drawable/drawer_item_color"
-
         tools:override="true"/>
 </androidx.drawerlayout.widget.DrawerLayout>
