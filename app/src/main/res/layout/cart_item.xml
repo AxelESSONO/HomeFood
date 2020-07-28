@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="10dp">
+    android:layout_margin="5dp"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/image_cart"
@@ -24,6 +25,7 @@
             android:layout_marginTop="5dp">
 
             <TextView
+                android:id="@+id/quantity_and_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5 x Glace au yaourt et aux fraises"
@@ -40,16 +42,18 @@
                 android:layout_centerVertical="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/edit_cart"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_edit_24"
                     android:background="@drawable/circle_background"/>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/remove_item"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_delete_24"
@@ -65,6 +69,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:id="@+id/cart_item_total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5 x 10€ = 50€"
@@ -76,6 +81,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

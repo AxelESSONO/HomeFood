@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="30dp"
     android:layout_height="30dp"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:id="@+id/relative_cart_toolbar_a">
 
     <ImageButton
         android:id="@+id/btn_cart"
@@ -16,7 +17,7 @@
         android:padding="0dp"/>
 
     <TextView
-        android:id="@+id/tv_cart_count"
+        android:id="@+id/dish_cart_count"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_alignParentRight="true"
