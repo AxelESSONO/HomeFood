@@ -11,10 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.AddDishToDataBaseActivity"></activity>
-
+        <activity android:name=".controller.CheckoutActivity"></activity>
+        <activity android:name=".controller.AddDishToDataBaseActivity" />
         <activity android:name=".controller.DishDetailActivity" />
-
         <activity
             android:name=".authentification.LoginWithActivity"
             android:exported="true"
@@ -31,7 +30,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".controller.CartActivity"
             android:parentActivityName=".controller.DishDetailActivity"
@@ -40,7 +38,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.DishDetailActivity" />
         </activity>
-
         <activity
             android:name=".controller.FoodActivity"
             android:parentActivityName=".controller.HomeActivity"
@@ -49,13 +46,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.HomeActivity" />
         </activity>
-
         <activity
             android:name=".controller.HomeActivity"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".authentification.RegisterActivity"
             android:screenOrientation="portrait" />

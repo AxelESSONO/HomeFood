@@ -1,8 +1,10 @@
 package com.obiangetfils.homefood.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,7 +43,7 @@ public class CartActivity extends AppCompatActivity {
     private int cartSubtotal, reduction, totalPrice;
     private ImageView comeBack;
     private LinearLayout toolbar;
-
+    private Button cartContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class CartActivity extends AppCompatActivity {
         toolbar = (LinearLayout) findViewById(R.id.toolbar);
         cartViewEmpty = (LinearLayout) findViewById(R.id.cart_view_empty);
         comeBack = (ImageView) toolbar.findViewById(R.id.come_back);
+        cartContinue = (Button) findViewById(R.id.cart_continue_btn);
 
         comeBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,9 +150,20 @@ public class CartActivity extends AppCompatActivity {
             int itemQuantity = Integer.parseInt(cartObjectList.get(i).getQuantity());
             initPrice = initPrice + (itemPrice * itemQuantity);
         }
+        final int finalPrice = initPrice - 50;
         cartSubtotalTxt.setText("" + initPrice + " Euros");
         reductionTxt.setText("50 Euros");
-        totalPriceTxt.setText("" + (initPrice - 50) + " Euros");
+        totalPriceTxt.setText("" + finalPrice + " Euros");
+
+        cartContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent checkoutIntent = new Intent(CartActivity.this, CheckoutActivity.class);
+                checkoutIntent.putExtra("TOTAL_PRICE", finalPrice);
+                startActivity(checkoutIntent);
+            }
+        });
+
     }
 
     @Override
