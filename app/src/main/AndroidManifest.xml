@@ -14,22 +14,23 @@
         <activity android:name=".controller.CheckoutActivity"></activity>
         <activity android:name=".controller.AddDishToDataBaseActivity" />
         <activity android:name=".controller.DishDetailActivity" />
+
         <activity
             android:name=".authentification.LoginWithActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
+
         </activity>
+
+
         <activity
             android:name=".controller.CartActivity"
             android:parentActivityName=".controller.DishDetailActivity"
@@ -38,6 +39,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.DishDetailActivity" />
         </activity>
+
         <activity
             android:name=".controller.FoodActivity"
             android:parentActivityName=".controller.HomeActivity"
@@ -46,11 +48,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.HomeActivity" />
         </activity>
+
         <activity
             android:name=".controller.HomeActivity"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".authentification.RegisterActivity"
             android:screenOrientation="portrait" />
@@ -63,18 +67,18 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
