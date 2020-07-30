@@ -1,5 +1,8 @@
 package com.obiangetfils.homefood.authentification;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -35,7 +35,6 @@ import com.obiangetfils.homefood.controller.HomeActivity;
 
 import dmax.dialog.SpotsDialog;
 import es.dmoral.toasty.Toasty;
-
 
 public class LoginWithActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
