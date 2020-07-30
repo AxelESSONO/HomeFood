@@ -15,7 +15,7 @@
     <string name="menu_home">Nos Menus</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_order">Mes Commandes</string>
     <string name="menu_offer">Nos Offres</string>
@@ -41,4 +41,5 @@
     <string name="you_are_logined">Vous êtes connectés!!</string>
     <string name="google_login_successfully">Connexion avec google réussie!</string>
     <string name="facebook_login_successfully">Connexion avec facebook réussie!</string>
+
 </resources>
