@@ -51,6 +51,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent foodIntent = new Intent(context, FoodActivity.class);
                 foodIntent.putExtra(CATEGORY_NAME, menuObjectList.get(position).getMenuName());
                 foodIntent.putExtra(CATEGORY_IMAGE, menuObjectList.get(position).getMenuImage());

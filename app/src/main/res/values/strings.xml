@@ -41,5 +41,36 @@
     <string name="you_are_logined">Vous êtes connectés!!</string>
     <string name="google_login_successfully">Connexion avec google réussie!</string>
     <string name="facebook_login_successfully">Connexion avec facebook réussie!</string>
+    <string name="order_type">Type de commande</string>
+    <string name="payment_method">Mode de paiement</string>
+    <string name="order_completed">Commande Validée</string>
+    <string name="bye_now">Payer maintenant</string>
+    <string name="complete_payment">Confirmer le paiement</string>
+    <string name="checkout">Checkout</string>
+    <string name="order_completed_message">Vous allez recevoir un message de confirmation avec tous les détails de votre commande! \nVous pouvez télécharger votre facture en pdf.</string>
+    <string name="congratulation">Félicitation, commande validée</string>
+    <string name="thank_you">Merci de votre confiance!</string>
+    <string name="order_number">Votre numéro de commande est:</string>
+    <string name="prev">Précédent</string>
+    <string name="next">Suivant</string>
+    <string name="shipping_mode">Choisir le moyen de livraison</string>
+    <string name="standard_shipping">Livraison Standard</string>
+    <string name="express_shipping">Livraison Express</string>
+    <string name="payment_method_way">Choisir votre moyen de paiement</string>
+
+    <string-array name="Voie">
+        <item>Allée</item>
+        <item>Avenue</item>
+        <item>Boulevard</item>
+        <item>Chaussée</item>
+        <item>Chemin</item>
+        <item>Impasse</item>
+        <item>Passage</item>
+        <item>Place</item>
+        <item>Quai</item>
+        <item>Rond-Point</item>
+        <item>Ruelle</item>
+
+    </string-array>
 
 </resources>

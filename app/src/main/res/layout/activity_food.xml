@@ -38,7 +38,7 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="#66000000"
+                        android:background="@color/custom_transparent"
                         app:layout_collapseMode="pin"
                         app:popupTheme="@style/AppTheme.PopupOverlay"
                         app:theme="@style/ToolbarColoredBackArrow"/>

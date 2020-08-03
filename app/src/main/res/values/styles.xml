@@ -32,5 +32,9 @@
         <item name="DialogSpotCount">4</item>
     </style>
 
+    <style name="material_transparent"
+        parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/custom_transparent</item>
+    </style>
 
 </resources>
