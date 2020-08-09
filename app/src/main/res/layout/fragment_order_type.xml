@@ -98,8 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorWhite"
-            android:text="@string/prev"
             android:textColor="@color/colorPrimaryDark"
+            android:text="@string/prev"
             android:textStyle="bold" />
 
         <Button

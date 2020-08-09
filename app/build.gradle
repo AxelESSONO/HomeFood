@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.obiangetfils.homefood"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -20,6 +20,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -53,10 +59,17 @@ dependencies {
     /* Stepper */
     implementation 'com.stepstone.stepper:material-stepper:3.2.3'
 
+    /* Card Form */
+    implementation 'com.craftman.cardform:cardform:0.0.2'
+
+    /* Jakewharton:butterknife */
+    implementation 'com.jakewharton:butterknife:10.2.2'
+
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.2'
 }
+apply plugin: 'com.google.gms.google-services'
