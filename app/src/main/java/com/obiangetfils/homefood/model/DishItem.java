@@ -3,8 +3,6 @@ package com.obiangetfils.homefood.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-
 public class DishItem implements Parcelable {
 
     private String dishName, dishDescription, dishPrice, dishCategory, dishUri, dishKey;
@@ -88,6 +86,30 @@ public class DishItem implements Parcelable {
 
     public void setDishKey(String dishKey) {
         this.dishKey = dishKey;
+    }
+
+    public Boolean isEqualTo(DishItem dishItem) {
+
+        Boolean isEqual = null;
+        DishItem currentDish = new DishItem(this.dishName,
+                this.dishDescription,
+                this.dishPrice,
+                this.dishCategory,
+                this.dishUri,
+                this.dishKey);
+
+        if (
+                currentDish.dishName.equals(dishItem.dishName) &&
+                currentDish.dishDescription.equals(dishItem.dishDescription) &&
+                currentDish.dishPrice.equals(dishItem.dishPrice) &&
+                currentDish.dishCategory.equals(dishItem.dishCategory) &&
+                currentDish.dishUri.equals(dishItem.dishUri) &&
+                currentDish.dishKey.equals(dishItem.dishKey)) {
+            isEqual = true;
+        } else {
+            isEqual = false;
+        }
+        return isEqual;
     }
 
     @Override

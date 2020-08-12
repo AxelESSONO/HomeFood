@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -37,6 +38,7 @@ public class OrderTypeFragment extends Fragment implements View.OnClickListener{
     private RelativeLayout relativeLayout, relativeLayoutDelivery;
 
     private ArrayAdapter<CharSequence> adapter;
+    private CardView card_one, card_two;
 
     public OrderTypeFragment() {
         // Required empty public constructor
@@ -55,9 +57,12 @@ public class OrderTypeFragment extends Fragment implements View.OnClickListener{
         relativeLayout = (RelativeLayout) result.findViewById(R.id.recover_id);
         relativeLayoutDelivery = (RelativeLayout) result.findViewById(R.id.delivery_id);
 
+        card_one = (CardView) relativeLayoutDelivery.findViewById(R.id.card_one);
+        card_two = (CardView) relativeLayoutDelivery.findViewById(R.id.card_two);
+        card_one.setBackground(getResources().getDrawable(R.drawable.normal_background));
+        card_two.setBackground(getResources().getDrawable(R.drawable.normal_background));
 
         relativeLayout.setVisibility(View.GONE);
-
 
         recover.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +86,23 @@ public class OrderTypeFragment extends Fragment implements View.OnClickListener{
             public void onClick(View v) {
                 getActivity().finish();
                 getActivity().onBackPressed();
+            }
+        });
+
+        card_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card_one.setBackground(getResources().getDrawable(R.drawable.selected_backgroung));
+                card_two.setBackground(getResources().getDrawable(R.drawable.normal_background));
+
+            }
+        });
+
+        card_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card_one.setBackground(getResources().getDrawable(R.drawable.normal_background));
+                card_two.setBackground(getResources().getDrawable(R.drawable.selected_backgroung));
             }
         });
 

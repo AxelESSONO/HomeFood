@@ -30,17 +30,17 @@ import java.util.List;
 public class FoodActivity extends AppCompatActivity {
 
     private static final String MENUS = "menus";
-    private ImageView collapsedImage;
     private static final String CATEGORY_NAME = "CATEGORY_NAME";
     private String CATEGORY_IMAGE = "CATEGORY_IMAGE";
+    private ImageView collapsedImage;
     private String nameCategory;
     private int imageCategory;
     private Intent intent;
     private static final String TAG = "FoodActivity";
     private static final int NUM_COLUMNS = 2;
     private  StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter;
-    private RecyclerView recyclerView;
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
+    private RecyclerView recyclerView;
     private DatabaseReference reference;
 
     @Override

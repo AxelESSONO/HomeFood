@@ -7,10 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".fragments.navigation_fragments.OrderFragment">
 
-    <TextView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:layout_alignParentTop="true"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@android:color/black">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Order Fragment"
-        android:layout_centerInParent="true"/>
+        android:layout_below="@id/tabLayout"
+        tools:layout_editor_absoluteX="8dp"/>
 
 </RelativeLayout>

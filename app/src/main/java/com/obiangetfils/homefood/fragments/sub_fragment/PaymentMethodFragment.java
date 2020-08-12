@@ -109,7 +109,6 @@ public class PaymentMethodFragment extends Fragment implements View.OnClickListe
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.payment_method_container, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 

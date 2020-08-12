@@ -20,4 +20,10 @@
         android:icon="@drawable/ic_customer_service"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_logout"
+        android:title="Se déconnecter"
+        android:icon="@drawable/ic_customer_service"
+        app:showAsAction="never" />
+
 </menu>

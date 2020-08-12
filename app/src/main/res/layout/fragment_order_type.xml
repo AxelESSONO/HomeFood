@@ -12,78 +12,89 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ic_repas" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/material_cardview_radio"
-        style="@style/material_transparent"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="30dp">
+        android:layout_height="match_parent">
 
-        <RadioGroup
-            android:id="@+id/radio_group"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/delivery"
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/material_cardview_radio"
+                style="@style/material_transparent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:checked="true"
-                android:text="Livraison"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="30dp">
 
-            <RadioButton
-                android:id="@+id/recover"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:text="Récupérer dans 1h"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:checked="true"
+                        android:text="Livraison"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
 
-    </com.google.android.material.card.MaterialCardView>
+                    <RadioButton
+                        android:id="@+id/recover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:text="Récupérer dans 1h"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/material_transparent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_linear"
-        android:layout_below="@+id/material_cardview_radio"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="30dp">
+                </RadioGroup>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            </com.google.android.material.card.MaterialCardView>
 
-            <include
-                android:id="@+id/recover_id"
-                layout="@layout/recover"
-                android:visibility="gone" />
+            <com.google.android.material.card.MaterialCardView
+                style="@style/material_transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/material_cardview_radio"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerInParent="true"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="30dp">
 
-            <include
-                android:id="@+id/delivery_id"
-                layout="@layout/delivery" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
 
-        </LinearLayout>
+                    <include
+                        android:id="@+id/recover_id"
+                        layout="@layout/recover"
+                        android:visibility="gone" />
 
-    </com.google.android.material.card.MaterialCardView>
+                    <include
+                        android:id="@+id/delivery_id"
+                        layout="@layout/delivery" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/bottom_linear"

@@ -11,21 +11,21 @@
         android:id="@+id/recover_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/colorWhite"
+            android:layout_margin="5dp"
             android:drawableStart="@drawable/ic_person_24"
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorPrimaryDark"
             android:hint="@string/user_name"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:background="@color/colorWhite"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,21 +35,21 @@
             <EditText
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/colorWhite"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:hint="00"
                 android:inputType="numberSigned"
                 android:padding="10dp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:background="@color/colorWhite"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/colorWhite"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:hint="Voie (Rue, Boulevard ...)"
+                android:background="@color/colorWhite"
                 android:inputType="textPostalAddress"
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
@@ -59,10 +59,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/colorWhite"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:hint="Nom de la voie"
+            android:background="@color/colorWhite"
             android:inputType="textPostalAddress"
             android:padding="10dp"
             android:textColor="@android:color/black" />
@@ -75,10 +75,10 @@
             <EditText
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/colorWhite"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:hint="Code Postal"
+                android:background="@color/colorWhite"
                 android:inputType="numberSigned"
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
@@ -86,10 +86,10 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/colorWhite"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:hint="Ville"
+                android:background="@color/colorWhite"
                 android:inputType="textPostalAddress"
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
@@ -99,21 +99,21 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/colorWhite"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:hint="Pays"
             android:inputType="textPostalAddress"
             android:padding="10dp"
+            android:background="@color/colorWhite"
             android:textColor="@android:color/black" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/colorWhite"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:hint="Informations supplémentaires"
+            android:background="@color/colorWhite"
             android:inputType="text"
             android:padding="10dp"
             android:textColor="@android:color/black" />
@@ -121,19 +121,33 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:text="Enregistrer Cette Adresse ?"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:padding="5dp"
             android:text="@string/shipping_mode"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_margin="10dp"
-            android:padding="5dp"
             android:textColor="@color/colorWhite"
-            android:background="@color/colorPrimaryDark"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -158,9 +172,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
                         android:text="@string/standard_shipping"
                         android:textColor="@android:color/black"
                         android:textStyle="bold" />
@@ -170,6 +184,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -191,10 +206,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="20dp"
                         android:text="@string/express_shipping"
                         android:textColor="@android:color/black"
                         android:textStyle="bold" />
@@ -202,7 +217,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
         </RelativeLayout>
 

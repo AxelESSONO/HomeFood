@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.obiangetfils.homefood.R;
 import com.obiangetfils.homefood.controller.HomeActivity;
+import com.obiangetfils.homefood.controller.OrderActivity;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -47,7 +48,7 @@ public class OrderCompletedFragment extends Fragment{
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getContext().startActivity(new Intent(getContext(), OrderActivity.class));
+                getContext().startActivity(new Intent(getContext(), OrderActivity.class));
             }
         });
 

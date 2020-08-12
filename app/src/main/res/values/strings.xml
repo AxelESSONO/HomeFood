@@ -84,5 +84,7 @@
     <string name="card_number">Card Number</string>
     <string name="card_validity">Expires</string>
     <string name="card_cvv">CVV/CVC Number</string>
+    <string name="type_cvv_code">Saisir le code CVV</string>
+    <string name="reviews_ratings">Notes et avis</string>
 
 </resources>

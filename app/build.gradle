@@ -60,10 +60,14 @@ dependencies {
     implementation 'com.stepstone.stepper:material-stepper:3.2.3'
 
     /* Card Form */
-    implementation 'com.craftman.cardform:cardform:0.0.2'
+    implementation 'com.vinaygaba:creditcardview:1.0.4'
+    //implementation 'com.github.sharish:CreditCardView:v1.0.4'
 
     /* Jakewharton:butterknife */
     implementation 'com.jakewharton:butterknife:10.2.2'
+
+    /* Rating bar */
+    implementation 'hyogeun.github.com.colorratingbar:ColorRatingBar:1.0.1'
 
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'

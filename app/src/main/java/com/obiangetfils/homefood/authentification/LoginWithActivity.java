@@ -1,8 +1,5 @@
 package com.obiangetfils.homefood.authentification;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -94,12 +94,10 @@ public class LoginWithActivity extends AppCompatActivity implements GoogleApiCli
 
             @Override
             public void onCancel() {
-
             }
 
             @Override
             public void onError(FacebookException error) {
-
             }
         });
 
@@ -197,8 +195,7 @@ public class LoginWithActivity extends AppCompatActivity implements GoogleApiCli
                         } else {
                             // If sign in fails, display a message to the user.
                             waitinDialog.dismiss();
-                            Toast.makeText(LoginWithActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginWithActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
@@ -206,14 +203,12 @@ public class LoginWithActivity extends AppCompatActivity implements GoogleApiCli
     }
 
     private void waitingDialog(Context context, String message) {
-
         waitinDialog = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(context)
                 .setMessage(message)
                 .setCancelable(false)
                 .build();
         waitinDialog.show();
-
     }
 
 }

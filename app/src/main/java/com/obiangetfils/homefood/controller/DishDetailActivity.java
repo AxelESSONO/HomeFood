@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,11 +15,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,11 +33,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.obiangetfils.homefood.R;
+import com.obiangetfils.homefood.adapter.SpacesItemDecoration;
+import com.obiangetfils.homefood.adapter.StaggeredRecyclerViewAdapter;
 import com.obiangetfils.homefood.model.DishItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+import hyogeun.github.com.colorratingbarlib.ColorRatingBar;
 
 public class DishDetailActivity extends AppCompatActivity {
 
@@ -41,9 +52,22 @@ public class DishDetailActivity extends AppCompatActivity {
     private String toolbarTitle;
     private DishItem dishItem;
     private Menu cartMenu;
-    private TextView cartCountTxt;
+    private TextView cartCountTxt, product_ratings_count;
     private RelativeLayout relativeLayout;
-
+    private RecyclerView recyclerView;
+    private StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter;
+    private StaggeredGridLayoutManager staggeredGridLayoutManager;
+    private ImageView imageviewWidget;
+    private TextView nameWidget, descriptionTxt;
+    private AppCompatImageButton minusBtn, addBtn;
+    private Button addToCart;
+    private static final int NUM_COLUMNS = 2;
+    private DatabaseReference reference;
+    private static final String MENUS = "menus";
+    private static final String CATEGORY_NAME = "CATEGORY_NAME";
+    private String CATEGORY_IMAGE = "CATEGORY_IMAGE";
+    private ColorRatingBar ratingBar;
+    private CollapsingToolbarLayout myCollapsingToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +82,37 @@ public class DishDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(toolbarTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageView imageviewWidget = (ImageView) findViewById(R.id.imageview_widget);
-        final TextView priceTxt = (TextView) findViewById(R.id.price);
-        TextView nameWidget = (TextView) findViewById(R.id.name_widget);
-        TextView descriptionTxt = (TextView) findViewById(R.id.product_description);
-        final TextView quantityTxt = (TextView) findViewById(R.id.product_item_quantity);
-        AppCompatImageButton minusBtn = (AppCompatImageButton) findViewById(R.id.product_item_quantity_minusBtn);
-        AppCompatImageButton addBtn = (AppCompatImageButton) findViewById(R.id.product_item_quantity_plusBtn);
-        Button addToCart = (Button) findViewById(R.id.add_to_cart);
+        myCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        myCollapsingToolbar.setContentScrimColor(getResources().getColor(R.color.colorPrimaryToolbar));
 
+        imageviewWidget = (ImageView) findViewById(R.id.imageview_widget);
+        final TextView priceTxt = (TextView) findViewById(R.id.price);
+        nameWidget = (TextView) findViewById(R.id.name_widget);
+        descriptionTxt = (TextView) findViewById(R.id.product_description);
+        final TextView quantityTxt = (TextView) findViewById(R.id.product_item_quantity);
+        minusBtn = (AppCompatImageButton) findViewById(R.id.product_item_quantity_minusBtn);
+        addBtn = (AppCompatImageButton) findViewById(R.id.product_item_quantity_plusBtn);
+        addToCart = (Button) findViewById(R.id.add_to_cart);
+        ratingBar = (ColorRatingBar) findViewById(R.id.product_rating_bar);
+        product_ratings_count = (TextView) findViewById(R.id.product_ratings_count);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                product_ratings_count.setText(""+ratingBar.getRating());
+            }
+        });
 
         Intent dishListParcelableIntent = getIntent();
 
         dishItem = dishListParcelableIntent.getParcelableExtra("DISH_ITEM_LIST");
 
+        loadRecyclerView(dishItem);
+
         Glide.with(getApplicationContext()).load(dishItem.getDishUri()).into(imageviewWidget);
+
         nameWidget.setText(dishItem.getDishName());
+
         price = Integer.parseInt(dishItem.getDishPrice());
 
         descriptionTxt.setText(dishItem.getDishDescription());
@@ -117,6 +156,60 @@ public class DishDetailActivity extends AppCompatActivity {
         });
 
     }
+
+    private void loadRecyclerView(DishItem dishItem) {
+
+        String nameCategory = dishItem.getDishCategory();
+        // Get a reference
+        reference = FirebaseDatabase.getInstance().getReference();
+
+        reference.child(MENUS).child(nameCategory).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                List<String> dishKeyList = new ArrayList<>();
+                for (DataSnapshot dataKeySnapshot : dataSnapshot.getChildren()){
+                    dishKeyList.add(dataKeySnapshot.getKey());
+                }
+
+                List<DishItem> dishItemArrayList = new ArrayList<>();
+                for (int i = 0; i < dishKeyList.size(); i++){
+
+                    String dishKey = dataSnapshot.child(dishKeyList.get(i)).child("dishKey").getValue(String.class);
+                    String dishUri = dataSnapshot.child(dishKeyList.get(i)).child("dishUri").getValue(String.class);
+                    String dishCategory = dataSnapshot.child(dishKeyList.get(i)).child("dishCategory").getValue(String.class);
+                    String dishPrice = dataSnapshot.child(dishKeyList.get(i)).child("dishPrice").getValue(String.class);
+                    String dishDescription = dataSnapshot.child(dishKeyList.get(i)).child("dishDescription").getValue(String.class);
+                    String dishName = dataSnapshot.child(dishKeyList.get(i)).child("dishName").getValue(String.class);
+                    DishItem dishObject = new DishItem(dishName, dishDescription, dishPrice, dishCategory, dishUri, dishKey);
+
+                    if (dishItem.isEqualTo(dishObject)){
+                        continue;
+                    } else {
+                        dishItemArrayList.add(dishObject);
+                    }
+                }
+
+                initRecyclerView(dishItemArrayList);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+    }
+
+    private void initRecyclerView(List<DishItem> dishItemArrayList) {
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_other_products);
+        staggeredRecyclerViewAdapter = new StaggeredRecyclerViewAdapter(this, dishItemArrayList);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
+        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+        recyclerView.setAdapter(staggeredRecyclerViewAdapter);
+    }
+
 
     private void loadCartFieldInDataBase(DishItem dishItem, String quantity) {
 

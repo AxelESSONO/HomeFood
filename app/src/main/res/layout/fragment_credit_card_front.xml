@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.obiangetfils.homefood.fragments.sub_fragment.payment.creditCard.CreditCardFrontFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/card_height"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/ic_card_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/chip_width"
+                android:layout_height="@dimen/chip_height"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/items_inbetween"
+                app:srcCompat="@drawable/ic_chip"/>
+
+            <EditText
+                android:id="@+id/tv_card_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:fontFamily="@font/ocramedium"
+                android:hint="@string/card_number_sample"
+                android:inputType="numberSigned"
+                android:maxLength="19"
+                android:textColor="@color/card_text_color"
+                android:textColorHint="@color/card_text_color"
+                android:textSize="@dimen/header_text" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/items_inbetween_small"
+                    android:fontFamily="@font/ocramedium"
+                    android:text="@string/card_validity_label"
+                    android:textColor="@color/card_text_color"
+                    android:textSize="@dimen/xsmall_text" />
+
+                <EditText
+                    android:id="@+id/tv_validity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ocramedium"
+                    android:hint="@string/card_validity_sample"
+                    android:inputType="numberSigned"
+                    android:maxLength="5"
+                    android:textColor="@color/card_text_color"
+                    android:textColorHint="@color/card_text_color"
+                    android:textSize="@dimen/medium_text" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/tv_member_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
+                android:elevation="20dp"
+                android:hint="@string/card_name_sample"
+                android:inputType="textPersonName"
+                android:textAllCaps="true"
+                android:textColor="@color/card_text_color"
+                android:textColorHint="@color/card_text_color"
+                android:textSize="@dimen/medium_text" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivType"
+            android:layout_width="@dimen/cardtype_width"
+            android:layout_height="@dimen/cardtype_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/items_inbetween_small"
+            android:layout_marginBottom="@dimen/items_inbetween_small" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
