@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,7 +35,6 @@ public class HomeFragment extends Fragment {
 
 
         menuAdapter = new MenuAdapter(menuObjectList, getContext());
-
         // Load List
         menuObjectList = new ArrayList<>();
         menuObjectList.add(new MenuObject("Entrée", R.drawable.ic_entree));
@@ -59,11 +57,10 @@ public class HomeFragment extends Fragment {
         // get the reference of RecyclerView
         //RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // set a StaggeredGridLayoutManager with 3 number of columns and vertical orientation
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         recyclerViewMenu.setLayoutManager(staggeredGridLayoutManager); // set LayoutManager to RecyclerView
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
         recyclerViewMenu.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         recyclerViewMenu.setAdapter(menuAdapter);
-
     }
 }

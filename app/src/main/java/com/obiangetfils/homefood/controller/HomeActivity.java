@@ -1,7 +1,7 @@
 package com.obiangetfils.homefood.controller;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -16,12 +16,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.obiangetfils.homefood.R;
+import com.obiangetfils.homefood.adapter.SliderAdapterExample;
+import com.obiangetfils.homefood.model.SliderItem;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -31,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView nameUser;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private SliderView sliderView;
+    private SliderAdapterExample adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,19 @@ public class HomeActivity extends AppCompatActivity {
         imageUser = (ImageView) findViewById(R.id.user_image);
         nameUser = (TextView) findViewById(R.id.username_drawer);
         addProductToDataBase = (FloatingActionButton) findViewById(R.id.add_product_floating_button);
+
+
+        sliderView = findViewById(R.id.imageSlider);
+        adapter = new SliderAdapterExample(getApplicationContext());
+
+
+        sliderView.setSliderAdapter(adapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_RIGHT);
+        sliderView.setScrollTimeInSec(3);
+        sliderView.setAutoCycle(true);
+
 
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -85,5 +104,27 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        String uri[] = {"https://buzzultra.com/wp-content/uploads/2018/06/recette-avocat-tomate.jpg",
+                "https://img-3.journaldesfemmes.fr/MbINIBpux71Onzs4zyyAJ5v-2Rw=/748x499/smart/5c953c0549344ab99e2de2ab3c345aef/recipe-jdf/374879.jpg",
+                "https://larecette.net/wp-content/uploads/2020/02/iStock-868408930.jpg",
+                "https://prod2.herta.be/sites/default/files/recette-plat-noel-2018-header-final.jpg",
+                "https://cac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fcac.2F2018.2F09.2F25.2F826a6cdf-f772-4191-ab13-74052753a5eb.2Ejpeg/1107x600/quality/65/magret-de-canard-au-four.jpg",
+                "https://www.avenuedesvins.fr/modules/leoblog/views/img/b/b-cover%20glace%20et%20vin.jpg",
+                "https://img.cuisineaz.com/660x660/2019-08-07/i149735-glace-cremeuse-a-la-vanille-sans-sorbetiere.jpeg",
+                "https://chefcuisto.com/files/2017/02/avocat-au-thon.jpg"
+        };
+
+        for (int i = 0; i < uri.length; i++) {
+            SliderItem sliderItem = new SliderItem();
+            sliderItem.setImageUrl(uri[i]);
+            adapter.addItem(sliderItem);
+            sliderView.startAutoCycle();
+        }
     }
 }

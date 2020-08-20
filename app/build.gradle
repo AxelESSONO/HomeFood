@@ -69,6 +69,10 @@ dependencies {
     /* Rating bar */
     implementation 'hyogeun.github.com.colorratingbar:ColorRatingBar:1.0.1'
 
+    /* Slider */
+    //implementation 'com.github.smarteist:autoimageslider:1.3.9'
+    implementation 'com.github.smarteist:autoimageslider:1.3.9-appcompat'
+
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation 'junit:junit:4.12'

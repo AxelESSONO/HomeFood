@@ -3,8 +3,7 @@ package com.obiangetfils.homefood.model;
 public class CartObject {
 
     private DishItem dishItem;
-    private String quantity;
-    private String userId, userName;
+    private String quantity, userId, userName;
 
     public CartObject() {
     }

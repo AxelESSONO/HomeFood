@@ -31,8 +31,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
     private Context mContext;
     private List<CartObject> cartObjectList;
-    private LayoutInflater mInflater;
-
     private int quantity;
     private int price;
     private int total_price = 0;
@@ -40,14 +38,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     public CartAdapter(Context mContext, List<CartObject> cartObjectList) {
         this.mContext = mContext;
         this.cartObjectList = cartObjectList;
-        this.mInflater = LayoutInflater.from(mContext);
     }
 
     @NonNull
     @Override
     public CartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = mInflater.inflate(R.layout.cart_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.cart_item, parent, false);
         return new CartHolder(view);
     }
 
